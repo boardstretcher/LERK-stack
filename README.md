@@ -11,4 +11,8 @@ You will need these servers:
 * logstash
 * rsyslog
 
-Do the installation in that order. Then connect your clients using rsyslog_client and nxlog. Rules are provided in logstash for syslog and windows event logs.
+Do the installation in that order. Then connect your clients using rsyslog_client and nxlog. Rules are provided in logstash for syslog and windows event logs. Rsyslog will save a copy of all logs to /var/log/remote/%hostname%
+
+Linux logs are sent to rsyslog and stored on disk and then forwarded to logstash. They are indexed in ES @ 'linux-hosts-%date%'
+
+Windows logs are sent to rsyslog and stored on disk but not forwarded. There is a second route in nxlog to send directly to logstash. They are indexed in ES @ 'windows-hosts-%date%'
